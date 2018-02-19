@@ -2,7 +2,7 @@
 const router = require('express').Router()
 const passport = require('../config/auth')
 const { Game } = require('../models')
-const utils = require('../lib/utils')
+// const utils = require('../lib/utils')
 
 const authenticate = passport.authorize('jwt', { session: false })
 
@@ -32,10 +32,9 @@ module.exports = io => {
         userId: req.account._id,
         players: [{
           userId: req.account._id,
-          pairs: []
+          symbol: []
         }],
-        cards: utils.shuffle('✿✪♦✵♣♠♥✖'.repeat(2).split(''))
-          .map((symbol) => ({ visible: false, symbol }))
+
       }
 
       Game.create(newGame)
